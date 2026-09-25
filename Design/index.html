@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zanzarda Primary School</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Gujarati:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f2f1ee;
+      --panel: #f7f5f1;
+      --paper: #f4f2ee;
+      --muted: #8b8d8f;
+      --muted-2: #9ba1a5;
+      --text: #1e2d35;
+      --heading: #1a1f22;
+      --teal: #0f9ab0;
+      --teal-dark: #0d7d95;
+      --teal-soft: rgba(15, 154, 176, 0.14);
+      --green: #49a73d;
+      --green-2: #3b8d3a;
+      --green-soft: rgba(73, 167, 61, 0.12);
+      --orange: #ef8d4b;
+      --line: rgba(34, 42, 49, 0.18);
+      --card: #e9e6e1;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', 'Noto Sans Gujarati', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    body {
+      min-height: 100vh;
+    }
+
+    .page {
+      width: 100%;
+      min-height: 100vh;
+      background: var(--bg);
+    }
+
+    .topbar {
+      background: rgba(255, 255, 255, 0.78);
+      border-bottom: 1px solid var(--line);
+      padding: 18px 28px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(6px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0e7d93, #0c9bb3);
+      position: relative;
+      flex-shrink: 0;
+      box-shadow: inset 0 0 0 2px rgba(255,255,255,0.13);
+    }
+
+    .brand-mark::before {
+      content: "";
+      position: absolute;
+      inset: 10px 10px 10px 10px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+    }
+
+    .brand-copy {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .brand-copy .gujarati {
+      font-family: 'Noto Sans Gujarati', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      line-height: 1.15;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+      color: #2d2d2d;
+    }
+
+    .brand-copy .english {
+      font-size: 0.8rem;
+      color: rgba(33, 37, 41, 0.88);
+      white-space: nowrap;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: rgba(31, 39, 44, 0.92);
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .nav a:hover { color: var(--teal-dark); }
+
+    .lang {
+      font-size: 0.9rem;
+      color: rgba(32, 46, 52, 0.9);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .hero {
+      background: linear-gradient(180deg, #1aa0b8 0%, #0c93af 100%);
+      padding: 44px 0 32px;
+      color: white;
+    }
+
+    .hero-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .hero-panel {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      height: 360px;
+      margin: 0 auto 28px;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .hero-title {
+      text-align: center;
+      font-size: clamp(2.1rem, 3vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      margin: 0;
+      color: rgba(255,255,255,0.97);
+    }
+
+    .hero-sub {
+      text-align: center;
+      margin-top: 12px;
+      font-size: clamp(0.95rem, 1.3vw, 1.5rem);
+      color: rgba(255,255,255,0.9);
+      font-weight: 500;
+      letter-spacing: -0.02em;
+    }
+
+    .stats-bar {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 16px 20px 0;
+      display: flex;
+      justify-content: center;
+      gap: 44px;
+      flex-wrap: wrap;
+      color: #1f5d6f;
+      font-weight: 700;
+    }
+
+    .stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      min-width: 120px;
+      text-align: center;
+    }
+
+    .stat strong {
+      font-size: clamp(1.1rem, 1.7vw, 1.8rem);
+      color: #0b5969;
+      font-weight: 800;
+    }
+
+    .stat span {
+      font-size: 0.72rem;
+      color: rgba(11, 89, 105, 0.78);
+      text-transform: none;
+      letter-spacing: 0.03em;
+    }
+
+    .main {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 40px 20px 0;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 2.4vw, 3rem);
+      line-height: 1.1;
+      font-weight: 800;
+      letter-spacing: -0.05em;
+      margin: 0 0 18px;
+      color: rgba(19, 22, 24, 0.92);
+    }
+
+    .notices {
+      margin-top: 10px;
+    }
+
+    .notice-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(220px, 1fr));
+      gap: 18px;
+      width: 100%;
+    }
+
+    .notice-card {
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(31, 41, 45, 0.25);
+      border-radius: 10px;
+      min-height: 82px;
+      padding: 18px 18px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04);
+    }
+
+    .notice-date {
+      color: var(--orange);
+      font-weight: 700;
+      font-size: 0.82rem;
+      letter-spacing: 0.02em;
+      margin-bottom: 10px;
+      display: inline-block;
+    }
+
+    .notice-text {
+      font-size: clamp(1rem, 1.6vw, 1.2rem);
+      line-height: 1.3;
+      color: rgba(26, 31, 34, 0.95);
+      font-weight: 500;
+    }
+
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(180px, 1fr));
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .quick-card {
+      background: #46b44d;
+      border-radius: 12px;
+      min-height: 118px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
+      color: white;
+      text-decoration: none;
+      transition: transform 0.2s ease, filter 0.2s ease;
+    }
+
+    .quick-card:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.02);
+    }
+
+    .quick-card .icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.96);
+      position: absolute;
+      left: 50%;
+      top: 22px;
+      transform: translateX(-50%);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    }
+
+    .quick-card span {
+      position: absolute;
+      bottom: 26px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      white-space: nowrap;
+    }
+
+    .about {
+      margin-top: 44px;
+      padding-top: 14px;
+    }
+
+    .about-text {
+      max-width: 1120px;
+      line-height: 1.45;
+      font-size: clamp(1.2rem, 1.8vw, 2rem);
+      color: rgba(22, 27, 31, 0.82);
+      margin: 0;
+      letter-spacing: -0.03em;
+    }
+
+    .about-link {
+      display: inline-block;
+      margin-top: 14px;
+      font-size: 1.05rem;
+      color: #0c8ea9;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .facilities {
+      margin-top: 36px;
+    }
+
+    .facility-grid {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(120px, 1fr));
+      gap: 18px;
+      margin-top: 12px;
+    }
+
+    .facility-card {
+      min-height: 120px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(31,41,45,0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      color: rgba(28, 32, 36, 0.92);
+      font-weight: 500;
+      text-align: center;
+      padding: 12px 10px;
+    }
+
+    .facility-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: #0e92af;
+      box-shadow: inset 0 0 0 2px rgba(255,255,255,0.18);
+    }
+
+    .facility-name {
+      font-size: 1rem;
+      white-space: nowrap;
+    }
+
+    .achievements {
+      margin-top: 38px;
+      background: rgba(255,255,255,0.12);
+      border-top: 1px solid rgba(31,41,45,0.12);
+      padding-top: 26px;
+    }
+
+    .achievements-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(220px, 1fr));
+      gap: 18px;
+      padding: 0 0 18px;
+    }
+
+    .achievement-card {
+      background: linear-gradient(180deg, #50b553 0%, #45a74c 100%);
+      border-radius: 12px;
+      min-height: 250px;
+      overflow: hidden;
+      border: 1px solid rgba(25, 66, 32, 0.1);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
+    }
+
+    .achievement-box {
+      height: 180px;
+      background: rgba(255,255,255,0.06);
+    }
+
+    .achievement-details {
+      background: rgba(255,255,255,0.12);
+      padding: 14px 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-height: 70px;
+    }
+
+    .achievement-title {
+      font-size: clamp(1.1rem, 1.6vw, 1.8rem);
+      color: rgba(255,255,255,0.98);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.2;
+    }
+
+    .achievement-year {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .footer {
+      background: linear-gradient(180deg, #0e90ad 0%, #0d8199 100%);
+      color: rgba(255,255,255,0.96);
+      margin-top: 24px;
+      padding: 42px 0 8px;
+    }
+
+    .footer-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 30px;
+      align-items: start;
+    }
+
+    .footer-brand {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+
+    .footer-text {
+      color: rgba(255,255,255,0.9);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .footer-links {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px 30px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      color: rgba(255,255,255,0.96);
+      font-size: 0.98rem;
+    }
+
+    .footer-links li {
+      line-height: 1.8;
+    }
+
+    .footer-rule {
+      border-top: 1px solid rgba(255,255,255,0.22);
+      margin-top: 26px;
+      padding: 18px 0 12px;
+      color: rgba(255,255,255,0.9);
+      font-size: 0.96rem;
+    }
+
+    @media (max-width: 1000px) {
+      .nav {
+        gap: 10px 18px;
+      }
+
+      .facility-grid {
+        grid-template-columns: repeat(3, minmax(140px, 1fr));
+      }
+
+      .quick-grid {
+        grid-template-columns: repeat(2, minmax(180px, 1fr));
+      }
+
+      .notice-grid,
+      .achievements-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .topbar {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .nav {
+        width: 100%;
+      }
+
+      .hero-panel {
+        height: 220px;
+      }
+
+      .hero-sub {
+        font-size: 1rem;
+      }
+
+      .stats-bar {
+        gap: 18px 28px;
+      }
+
+      .facility-grid,
+      .quick-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .facility-grid,
+      .quick-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .brand-copy .gujarati {
+        white-space: normal;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-label="school logo"></div>
+        <div class="brand-copy">
+          <div class="gujarati">ગુંઝરડા પ્રાઇમરી શાળા</div>
+          <div class="english">Zanzarda Primary School, Junagadh</div>
+        </div>
+      </div>
+
+      <nav class="nav" aria-label="Main navigation">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Academics</a>
+        <a href="#">Admission</a>
+        <a href="#">Notices</a>
+        <a href="#">Results</a>
+        <a href="#">Gallery</a>
+        <a href="#">Facilities</a>
+        <a href="#">Achievements</a>
+        <a href="#">Contact</a>
+      </nav>
+
+      <div class="lang">ગુજરાતી / EN</div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-panel" aria-label="school banner"></div>
+        <h1 class="hero-title">Welcome to Zanzarda Primary School</h1>
+        <div class="hero-sub">A government primary school nurturing every child's growth — Junagadh, Gujarat</div>
+      </div>
+    </section>
+
+    <div class="stats-bar" aria-label="school statistics">
+      <div class="stat"><strong>24121603101</strong><span>UDISE Code</span></div>
+      <div class="stat"><strong>Gujarati</strong><span>Medium</span></div>
+      <div class="stat"><strong>GSEB</strong><span>Board</span></div>
+      <div class="stat"><strong>1–8</strong><span>Grades</span></div>
+    </div>
+
+    <main class="main">
+      <section class="notices" aria-labelledby="latest-notices">
+        <h2 id="latest-notices" class="section-title">Latest Notices</h2>
+        <div class="notice-grid">
+          <div class="notice-card">
+            <span class="notice-date">18 Sep 2026</span>
+            <div class="notice-text">Diwali vacation schedule announced</div>
+          </div>
+          <div class="notice-card">
+            <span class="notice-date">10 Sep 2020</span>
+            <div class="notice-text">Gunotsav evaluation next week</div>
+          </div>
+          <div class="notice-card">
+            <span class="notice-date">02 Sep 2020</span>
+            <div class="notice-text">Mid-Day Meal menu updated for Sept</div>
+          </div>
+        </div>
+
+        <div class="quick-grid" aria-label="Quick links">
+          <a class="quick-card" href="#"><span>Admission</span><div class="icon"></div></a>
+          <a class="quick-card" href="#"><span>Results</span><div class="icon"></div></a>
+          <a class="quick-card" href="#"><span>Gallery</span><div class="icon"></div></a>
+          <a class="quick-card" href="#"><span>Contact</span><div class="icon"></div></a>
+        </div>
+      </section>
+
+      <section class="about" aria-labelledby="about-school">
+        <h2 id="about-school" class="section-title">About Our School</h2>
+        <p class="about-text">Zanzarda Primary School has served the children of Zanzarda village, Junagadh, for generations — building a foundation of learning, values, and growth for every student who walks through its doors.</p>
+        <a href="#" class="about-link">Read more →</a>
+      </section>
+
+      <section class="facilities" aria-labelledby="our-facilities">
+        <h2 id="our-facilities" class="section-title">Our Facilities</h2>
+        <div class="facility-grid">
+          <div class="facility-card"><div class="facility-icon"></div><div class="facility-name">Library</div></div>
+          <div class="facility-card"><div class="facility-icon"></div><div class="facility-name">Computer Lab</div></div>
+          <div class="facility-card"><div class="facility-icon"></div><div class="facility-name">Playground</div></div>
+          <div class="facility-card"><div class="facility-icon"></div><div class="facility-name">Mid-Day Meal</div></div>
+          <div class="facility-card"><div class="facility-icon"></div><div class="facility-name">Drinking Water</div></div>
+          <div class="facility-card"><div class="facility-icon"></div><div class="facility-name">Toilets</div></div>
+        </div>
+      </section>
+
+      <section class="achievements" aria-labelledby="achievements-title">
+        <h2 id="achievements-title" class="section-title">Achievements</h2>
+        <div class="achievements-grid">
+          <article class="achievement-card">
+            <div class="achievement-box"></div>
+            <div class="achievement-details">
+              <div class="achievement-title">Khel Mahakumbh — Taluka Level Winner</div>
+              <div class="achievement-year">2026</div>
+            </div>
+          </article>
+          <article class="achievement-card">
+            <div class="achievement-box"></div>
+            <div class="achievement-details">
+              <div class="achievement-title">District Level Elocution — 1st Prize</div>
+              <div class="achievement-year">2025</div>
+            </div>
+          </article>
+          <article class="achievement-card">
+            <div class="achievement-box"></div>
+            <div class="achievement-details">
+              <div class="achievement-title">100% Attendance Award — Std 5</div>
+              <div class="achievement-year">2025</div>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <div class="footer-grid">
+          <div>
+            <div class="footer-brand">Zanzarda Primary School</div>
+            <div class="footer-text">Zanzarda Village, Junagadh, Gujarat</div>
+            <div class="footer-text">UDISE: 24121603101</div>
+          </div>
+
+          <div>
+            <ul class="footer-links">
+              <li>Home</li>
+              <li>About</li>
+              <li>Admission</li>
+              <li>Notices</li>
+              <li>Contact</li>
+            </ul>
+          </div>
+
+          <div>
+            <ul class="footer-links">
+              <li>RTI</li>
+              <li>SMC</li>
+              <li>Grievance Redressal</li>
+              <li>Website Policies</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-rule">© 2026 Zanzarda Primary School · Gujarat Education Department</div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
+

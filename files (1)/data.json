@@ -1,0 +1,35 @@
+{
+  "engagementTrend": {
+    "dates": ["Sep 18", "Sep 19", "Sep 20", "Sep 21", "Sep 22", "Sep 23", "Sep 24"],
+    "likes":    [1200, 1900, 1700, 2400, 3100, 2800, 3500],
+    "comments": [300, 420, 380, 510, 610, 590, 700],
+    "shares":   [150, 210, 190, 260, 340, 300, 410]
+  },
+  "hashtagPopularity": [
+    { "tag": "#AI", "count": 8200 },
+    { "tag": "#TechNews", "count": 6100 },
+    { "tag": "#Startup", "count": 4700 },
+    { "tag": "#DataScience", "count": 4300 },
+    { "tag": "#CyberSecurity", "count": 3600 },
+    { "tag": "#WebDev", "count": 2900 }
+  ],
+  "sentimentDistribution": [
+    { "name": "Positive", "y": 54 },
+    { "name": "Neutral", "y": 31 },
+    { "name": "Negative", "y": 15 }
+  ],
+  "userActivityByHour": [
+    [0,5],[1,3],[2,2],[3,1],[4,1],[5,2],[6,4],[7,8],[8,14],[9,20],
+    [10,26],[11,29],[12,33],[13,31],[14,28],[15,30],[16,34],[17,38],
+    [18,42],[19,45],[20,40],[21,32],[22,20],[23,10]
+  ],
+  "networkStats": [
+    { "user": "@analyst_jane", "followers": 15400, "engagementRate": 4.2 },
+    { "user": "@techbot", "followers": 89000, "engagementRate": 1.1 },
+    { "user": "@newsdesk", "followers": 320000, "engagementRate": 0.6 },
+    { "user": "@dev_max", "followers": 5200, "engagementRate": 6.8 },
+    { "user": "@cyberwatch", "followers": 41000, "engagementRate": 3.4 },
+    { "user": "@growth_hacker", "followers": 22000, "engagementRate": 5.1 },
+    { "user": "@meme_lord", "followers": 150000, "engagementRate": 2.3 }
+  ]
+}
